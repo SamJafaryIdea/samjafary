@@ -438,7 +438,20 @@ body[data-theme="light"] .icon-moon{ display: block; }
   background: rgba(var(--accent-2-rgb), 0.14);
   padding: 4px 10px;
   border-radius: 999px;
+}
+.portfolio-tags{
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 14px 0 16px;
+}
+
+.portfolio-date{
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  direction: ltr;
+  text-align: right;
 }
 
 .portfolio-title{
