@@ -177,8 +177,8 @@ img{ max-width: 100%; display: block; }
 .theme-toggle:active{ transform: scale(.92); }
 
 .icon-moon{ display: none; }
-body[data-theme="light"] .icon-sun{ display: none; }
-body[data-theme="light"] .icon-moon{ display: block; }
+body[data-theme="light"] .icon-sun{ display: none; } --accent-rgb: 227, 167, 59;
+body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 31;
 
 .menu-toggle{
   display: none;
