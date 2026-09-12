@@ -589,10 +589,27 @@ body[data-theme="light"] .icon-moon{ transform: translate(-50%,-50%) rotate(0deg
 
 .contact-links{
   display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-top: 1px solid var(--border);
+  justify-content: center;
+  gap: 14px;
 }
+
+.contact-icon{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+}
+.contact-icon:hover{
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+.contact-icon svg{ width: 20px; height: 20px; }
 
 .contact-link{
   display: flex;
