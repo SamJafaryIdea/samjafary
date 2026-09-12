@@ -322,6 +322,11 @@ body[data-theme="light"] .icon-moon{ display: block; }
 }
 
 .hl{ color: var(--accent); }
+.hero-title-en{
+  display: inline-block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+}
 
 .hero-lead{
   margin: 28px 0 0;
