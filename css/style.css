@@ -221,6 +221,70 @@ body[data-theme="light"] .icon-moon{ display: block; }
   flex: 1;
   min-width: 0;
 }
+/* ---------- تصویر هیرو ---------- */
+.hero-visual{
+  position: relative;
+  flex: 0 0 320px;
+  max-width: 380px;
+  animation: fadeUp .7s var(--ease) both;
+}
+
+.hero-blob{
+  position: absolute;
+  inset: -6% -10%;
+  background: var(--accent);
+  opacity: .16;
+  border-radius: 62% 38% 55% 45% / 55% 45% 55% 45%;
+  z-index: 0;
+}
+
+.hero-photo-placeholder{
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 4 / 5;
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  background: var(--surface);
+}
+
+.hero-photo{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-lg);
+}
+
+.hero-socials{
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.hero-social{
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+}
+.hero-social:hover{
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+.hero-social svg{ width: 17px; height: 17px; }
 
 .eyebrow{
   display: inline-flex;
@@ -584,6 +648,14 @@ body[data-theme="light"] .icon-moon{ display: block; }
   .menu-toggle{ display: flex; }
 
   .hero{ padding: 64px 0 56px; }
+    .hero-inner{
+    flex-direction: column-reverse;
+    gap: 32px;
+  }
+  .hero-visual{
+    max-width: 260px;
+    width: 100%;
+  }
   .hero-title{ max-width: none; }
 
   .services{ padding: 24px 0 72px; }
