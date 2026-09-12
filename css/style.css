@@ -1,4 +1,4 @@
-                     /* ==========================================================
+/* ==========================================================
    سام جعفری — پورتفولیو
    ========================================================== */
 
@@ -30,6 +30,7 @@ body[data-theme="dark"]{
   --accent-2: #C1503F;
   --accent-ink: #1A1305;
   --bg-rgb: 19, 19, 24;
+  --accent-rgb: 227, 167, 59;
   --accent-2-rgb: 193, 80, 63;
 }
 
@@ -46,6 +47,7 @@ body[data-theme="light"]{
   --accent-2: #B14435;
   --accent-ink: #FFF7E8;
   --bg-rgb: 245, 243, 238;
+  --accent-rgb: 198, 130, 31;
   --accent-2-rgb: 177, 68, 53;
 }
 
@@ -86,7 +88,6 @@ h1,h2,h3{ margin: 0; font-weight: 800; }
 
 img{ max-width: 100%; display: block; }
 
-/* بافت نویز خیلی ظریف روی پس‌زمینه */
 .grain{
   position: fixed;
   inset: 0;
@@ -121,11 +122,6 @@ img{ max-width: 100%; display: block; }
   font-weight: 700;
 }
 
-.logo-mark{
-  width: 52px;
-  height: 52px;
-  object-fit: contain;
-}
 .logo-mark-text{
   font-family: var(--font-mono);
   font-weight: 700;
@@ -158,8 +154,22 @@ img{ max-width: 100%; display: block; }
   color: var(--text-muted);
   transition: color .25s var(--ease);
   position: relative;
+  padding-bottom: 3px;
+}
+.nav-link::after{
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .3s var(--ease);
 }
 .nav-link:hover{ color: var(--text); }
+.nav-link:hover::after{ transform: scaleX(1); }
 
 .header-actions{
   display: flex;
@@ -168,6 +178,8 @@ img{ max-width: 100%; display: block; }
 }
 
 .theme-toggle{
+  position: relative;
+  overflow: hidden;
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -183,9 +195,16 @@ img{ max-width: 100%; display: block; }
 .theme-toggle:hover{ border-color: var(--accent); }
 .theme-toggle:active{ transform: scale(.92); }
 
-.icon-moon{ display: none; }
-body[data-theme="light"] .icon-sun{ display: none; } --accent-rgb: 227, 167, 59;
-body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 31;
+.theme-toggle svg{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: opacity .35s var(--ease), transform .5s var(--ease);
+}
+.icon-sun{ transform: translate(-50%,-50%) rotate(0deg) scale(1); opacity: 1; }
+.icon-moon{ transform: translate(-50%,-50%) rotate(-90deg) scale(.4); opacity: 0; }
+body[data-theme="light"] .icon-sun{ transform: translate(-50%,-50%) rotate(90deg) scale(.4); opacity: 0; }
+body[data-theme="light"] .icon-moon{ transform: translate(-50%,-50%) rotate(0deg) scale(1); opacity: 1; }
 
 .menu-toggle{
   display: none;
@@ -228,6 +247,7 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
   flex: 1;
   min-width: 0;
 }
+
 /* ---------- تصویر هیرو ---------- */
 .hero-visual{
   position: relative;
@@ -238,27 +258,17 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
 
 .hero-blob{
   position: absolute;
-  inset: -6% -10%;
+  inset: -14%;
   background: var(--accent);
-  opacity: .16;
-  border-radius: 62% 38% 55% 45% / 55% 45% 55% 45%;
+  opacity: .18;
+  border-radius: 48% 52% 58% 42% / 55% 58% 42% 45%;
   z-index: 0;
+  animation: blobFloat 8s ease-in-out infinite;
 }
 
-.hero-photo-placeholder{
-  position: relative;
-  z-index: 1;
-  aspect-ratio: 4 / 5;
-  border: 1.5px dashed var(--border);
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 24px;
-  color: var(--text-muted);
-  font-size: 13.5px;
-  background: var(--surface);
+@keyframes blobFloat{
+  0%, 100%{ transform: translateY(0) scale(1); }
+  50%{ transform: translateY(-10px) scale(1.03); }
 }
 
 .hero-photo{
@@ -352,13 +362,6 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
   text-shadow: 0 0 20px rgba(var(--accent-rgb), .6), 0 0 6px rgba(var(--accent-rgb), .5);
 }
 
-.hero-lead{
-  margin: 28px 0 0;
-  max-width: 52ch;
-  font-size: 17px;
-  color: var(--text-muted);
-}
-
 .hero-actions{
   display: flex;
   gap: 14px;
@@ -374,7 +377,7 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
   border-radius: var(--radius-sm);
   font-size: 14.5px;
   font-weight: 600;
-  transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
+  transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
   border: 1px solid transparent;
 }
 
@@ -382,13 +385,19 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
   background: var(--accent);
   color: var(--accent-ink);
 }
-.btn-primary:hover{ transform: translateY(-2px); }
+.btn-primary:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(var(--accent-rgb), .35);
+}
 
 .btn-ghost{
   border-color: var(--border);
   color: var(--text);
 }
-.btn-ghost:hover{ border-color: var(--accent); transform: translateY(-2px); }
+.btn-ghost:hover{
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
 
 /* ---------- عنوان بخش‌ها ---------- */
 .section-head{ max-width: 640px; margin-bottom: 52px; }
@@ -445,6 +454,10 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
   font-size: 13px;
   color: var(--accent);
   margin-bottom: 18px;
+  transition: transform .3s var(--ease);
+}
+.service-card:hover .service-num{
+  transform: scale(1.15) rotate(-4deg);
 }
 
 .service-title{
@@ -493,29 +506,15 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
   transition: border-color .3s var(--ease), transform .3s var(--ease);
 }
 
-.portfolio-card:not(.is-empty):hover{
+.portfolio-card:hover{
   border-color: var(--accent);
   transform: translateY(-4px);
-}
-
-.portfolio-card.is-empty{
-  border-style: dashed;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 10px;
 }
 
 .portfolio-num{
   font-family: var(--font-mono);
   font-size: 13px;
   color: var(--accent);
-}
-
-.portfolio-status{
-  color: var(--text-muted);
-  font-size: 14px;
-  margin: 0;
 }
 
 .portfolio-tag{
@@ -527,7 +526,12 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
   background: rgba(var(--accent-2-rgb), 0.14);
   padding: 4px 10px;
   border-radius: 999px;
+  transition: transform .25s var(--ease);
 }
+.portfolio-card:hover .portfolio-tag{
+  transform: translateY(-1px);
+}
+
 .portfolio-tags{
   display: flex;
   align-items: center;
@@ -553,14 +557,6 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
   font-size: 14px;
   margin: 0 0 18px;
   flex-grow: 1;
-}
-
-.portfolio-link{
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--accent);
-  direction: ltr;
-  text-align: right;
 }
 
 /* ---------- تماس ---------- */
@@ -604,12 +600,10 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
   transition: color .25s var(--ease), padding .25s var(--ease);
 }
 
-.contact-link:not(.is-disabled):hover{
+.contact-link:hover{
   color: var(--accent);
   padding-inline-start: 14px;
 }
-
-.contact-link.is-disabled{ color: var(--text-muted); cursor: default; }
 
 .contact-label{ font-weight: 600; }
 
@@ -678,7 +672,7 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
   .menu-toggle{ display: flex; }
 
   .hero{ padding: 64px 0 56px; }
-    .hero-inner{
+  .hero-inner{
     flex-direction: column-reverse;
     gap: 32px;
   }
@@ -686,7 +680,6 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
     max-width: 260px;
     width: 100%;
   }
-  .hero-title{ max-width: none; }
 
   .services{ padding: 24px 0 72px; }
   .portfolio{ padding: 24px 0 72px; }
@@ -708,6 +701,7 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
   .wrap{ padding: 0 18px; }
   .logo-text{ display: none; }
 }
+
 /* ==========================================================
    انیمیشن‌ها
    ========================================================== */
@@ -719,13 +713,11 @@ body[data-theme="light"] .icon-moon{ display: block; } --accent-rgb: 198, 130, 3
 
 .hero .eyebrow,
 .hero-title,
-.hero-lead,
 .hero-actions{
   animation: fadeUp .7s var(--ease) both;
 }
 .hero-title{ animation-delay: .08s; }
-.hero-lead{ animation-delay: .16s; }
-.hero-actions{ animation-delay: .24s; }
+.hero-actions{ animation-delay: .16s; }
 
 .js-anim .reveal{
   opacity: 0;
